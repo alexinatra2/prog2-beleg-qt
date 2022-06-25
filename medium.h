@@ -9,8 +9,6 @@ class Medium : public QObject
 public:
     explicit Medium(QObject *parent = nullptr);
 
-signals:
-
 };
 
 #endif // MEDIUM_H

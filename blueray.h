@@ -3,7 +3,7 @@
 
 #include "videomedium.h"
 
-class Blueray : public VideoMedium
+class Blueray : public Medium
 {
 public:
     explicit Blueray(QObject *parent = nullptr);

@@ -1,9 +1,9 @@
 #ifndef BOOK_H
 #define BOOK_H
 
-#include "printmedium.h"
+#include "medium.h"
 
-class Book : public PrintMedium
+class Book : public Medium
 {
 public:
     explicit Book(QObject *parent = nullptr);
