@@ -28,7 +28,7 @@
       <enum>QLayout::SetDefaultConstraint</enum>
      </property>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout">
+      <layout class="QVBoxLayout" name="optionsPane">
        <item>
         <widget class="QLabel" name="MediumOptions">
          <property name="text">
@@ -108,7 +108,7 @@
       </layout>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
+      <layout class="QVBoxLayout" name="dataPane">
        <item>
         <widget class="QTableWidget" name="MediumTable">
          <column>
@@ -160,7 +160,7 @@
       </layout>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
+      <layout class="QVBoxLayout" name="detailsPane">
        <item>
         <widget class="QLabel" name="label">
          <property name="text">

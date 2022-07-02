@@ -7,6 +7,9 @@ class Book : public Medium
 {
 public:
     explicit Book(QObject *parent = nullptr);
+    std::ostream &Show(std::ostream &os) {
+        return os;
+    }
 };
 
 #endif // BOOK_H

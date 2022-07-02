@@ -7,6 +7,9 @@ class Cd : public Medium
 {
 public:
     explicit Cd(QObject *parent = nullptr);
+    std::ostream &Show(std::ostream &os) {
+        return os;
+    }
 };
 
 #endif // CD_H

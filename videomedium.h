@@ -13,6 +13,9 @@ public:
     void SetAgeRestriction(int ageRestriction) {
         this->_ageRestriction = ageRestriction;
     }
+    virtual std::ostream &Show(std::ostream &os) {
+        return os;
+    }
 
 private:
     int _ageRestriction;

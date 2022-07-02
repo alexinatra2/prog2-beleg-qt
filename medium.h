@@ -4,6 +4,7 @@
 #include <QObject>
 #include <ostream>
 #include <string>
+#include "user.h"
 
 class Medium : public QObject
 {
@@ -22,11 +23,26 @@ public:
     void SetDescription(std::string description) {
         this->_description = description;
     }
-    virtual std::ostream &Show(std::ostream &os);
+    User *GetBorrowingUser() {
+        return this->_borrowingUser;
+    }
+    void SetBorrowingUser(User *user) {
+        this->_borrowingUser = user;
+    }
+    bool isBorrowed() {
+        return _borrowingUser == nullptr;
+    }
+    virtual std::ostream &Show(std::ostream &os) {
+        return os;
+    }
+
+private slots:
+
 
 private:
     std::string _title;
     std::string _description;
+    User *_borrowingUser;
 };
 
 #endif // MEDIUM_H
