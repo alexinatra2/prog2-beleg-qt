@@ -6,6 +6,13 @@
 #include <string>
 #include "user.h"
 
+enum MediumType {
+    BOOK,
+    CD,
+    DVD,
+    BLUERAY
+};
+
 class Medium : public QObject
 {
     Q_OBJECT
@@ -18,9 +25,9 @@ public:
         this->_title = title;
     }
     std::string GetDescription() {
-        return this->_description;
+        return this->_description == nullptr ? "no description" : *this->_description;
     }
-    void SetDescription(std::string description) {
+    void SetDescription(std::string *description) {
         this->_description = description;
     }
     User *GetBorrowingUser() {
@@ -28,6 +35,21 @@ public:
     }
     void SetBorrowingUser(User *user) {
         this->_borrowingUser = user;
+    }
+    MediumType GetType() {
+        return this->_type;
+    }
+    std::string GetTypeString() {
+        switch(this->_type) {
+        case BOOK:
+            return "book";
+        case CD:
+            return "cd";
+        case DVD:
+            return "dvd";
+        case BLUERAY:
+            return "blueray";
+        }
     }
     bool isBorrowed() {
         return _borrowingUser == nullptr;
@@ -41,8 +63,11 @@ private slots:
 
 private:
     std::string _title;
-    std::string _description;
+    std::string *_description;
     User *_borrowingUser;
+
+protected:
+    MediumType _type;
 };
 
 #endif // MEDIUM_H

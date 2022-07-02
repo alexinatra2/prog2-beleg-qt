@@ -3,5 +3,5 @@
 Cd::Cd(QObject *parent)
     : Medium{parent}
 {
-
+    this->_type = CD;
 }

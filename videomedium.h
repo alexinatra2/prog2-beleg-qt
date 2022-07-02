@@ -13,12 +13,23 @@ public:
     void SetAgeRestriction(int ageRestriction) {
         this->_ageRestriction = ageRestriction;
     }
-    virtual std::ostream &Show(std::ostream &os) {
+    int GetLength() {
+        return this->_length;
+    }
+    void SetLength(int length) {
+        this->_length = length;
+    }
+    std::ostream &Show(std::ostream &os) {
+        os << "title: " << this->GetTitle() << '\n';
+        os << "age rating: " << this->GetAgeRestriction() << '\n';
+        os << "length: " << this->GetLength();
+        os << "description: " << this->GetDescription();
         return os;
     }
 
 private:
     int _ageRestriction;
+    int _length;
 };
 
 #endif // VIDEOMEDIUM_H

@@ -7,11 +7,6 @@ class Dvd : public VideoMedium
 {
 public:
     explicit Dvd(QObject *parent = nullptr);
-    std::ostream &Show(std::ostream &os) {
-        return os;
-    }
-
-private:
 };
 
 #endif // DVD_H
