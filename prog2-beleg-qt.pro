@@ -15,7 +15,9 @@ SOURCES += \
     dvd.cpp \
     main.cpp \
     mainwindow.cpp \
-    medium.cpp
+    medium.cpp \
+    user.cpp \
+    videomedium.cpp
 
 HEADERS += \
     blueray.h \
@@ -23,7 +25,9 @@ HEADERS += \
     cd.h \
     dvd.h \
     mainwindow.h \
-    medium.h
+    medium.h \
+    user.h \
+    videomedium.h
 
 FORMS += \
     mainwindow.ui

@@ -3,10 +3,12 @@
 
 #include "videomedium.h"
 
-class Dvd : public Medium
+class Dvd : public VideoMedium
 {
 public:
     explicit Dvd(QObject *parent = nullptr);
+
+private:
 };
 
 #endif // DVD_H
