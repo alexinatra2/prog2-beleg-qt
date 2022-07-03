@@ -20,6 +20,7 @@ public:
         this->_length = length;
     }
     std::ostream &Show(std::ostream &os) {
+        os << "type: " << GetType() << '\n';
         os << "title: " << this->GetTitle() << '\n';
         os << "age rating: " << this->GetAgeRestriction() << '\n';
         os << "length: " << this->GetLength();

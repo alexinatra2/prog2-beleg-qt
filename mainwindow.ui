@@ -51,6 +51,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="EditMedium">
+         <property name="text">
+          <string>edit medium</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QPushButton" name="BorrowMedium">
          <property name="text">
           <string>borrow medium</string>
@@ -72,9 +79,9 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="CreateUser">
+        <widget class="QPushButton" name="AddUser">
          <property name="text">
-          <string>create user</string>
+          <string>add user</string>
          </property>
         </widget>
        </item>
@@ -110,52 +117,10 @@
      <item>
       <layout class="QVBoxLayout" name="dataPane">
        <item>
-        <widget class="QTableWidget" name="MediumTable">
-         <column>
-          <property name="text">
-           <string>Type</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Title</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Description</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Borrow status</string>
-          </property>
-         </column>
-        </widget>
+        <widget class="QTableWidget" name="MediumTable"/>
        </item>
        <item>
-        <widget class="QTableWidget" name="UserTable">
-         <column>
-          <property name="text">
-           <string>First Name</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Last Name</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Address</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Age</string>
-          </property>
-         </column>
-        </widget>
+        <widget class="QTableWidget" name="UserTable"/>
        </item>
       </layout>
      </item>
@@ -169,7 +134,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QTextEdit" name="textEdit"/>
+        <widget class="QTextEdit" name="Details"/>
        </item>
       </layout>
      </item>

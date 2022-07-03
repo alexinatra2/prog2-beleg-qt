@@ -9,8 +9,11 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    addmediumdialog.cpp \
+    adduserdialog.cpp \
     blueray.cpp \
     book.cpp \
+    borrowdialog.cpp \
     cd.cpp \
     dvd.cpp \
     main.cpp \
@@ -20,8 +23,11 @@ SOURCES += \
     videomedium.cpp
 
 HEADERS += \
+    addmediumdialog.h \
+    adduserdialog.h \
     blueray.h \
     book.h \
+    borrowdialog.h \
     cd.h \
     dvd.h \
     mainwindow.h \
@@ -30,6 +36,9 @@ HEADERS += \
     videomedium.h
 
 FORMS += \
+    addmediumdialog.ui \
+    adduserdialog.ui \
+    borrowdialog.ui \
     mainwindow.ui
 
 TRANSLATIONS += \
