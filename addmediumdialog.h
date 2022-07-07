@@ -20,6 +20,9 @@ public:
 private:
     Ui::AddMediumDialog *ui;
     Medium *newMedium;
+
+signals:
+    void createMedium();
 };
 
 #endif // ADDMEDIUMDIALOG_H

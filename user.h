@@ -2,50 +2,42 @@
 #define USER_H
 
 #include <QObject>
-#include <string>
-#include <sstream>
-#include <ctime>
+#include <QDate>
 
 class User : public QObject
 {
     Q_OBJECT
 public:
     explicit User(QObject *parent = nullptr);
-    std::string GetFirstName() {
+    QString GetFirstName() {
         return this->_firstName;
     }
-    void SetFirstName(std::string firstName) {
+    void SetFirstName(QString firstName) {
         this->_firstName = firstName;
     }
-    std::string GetLastName() {
+    QString GetLastName() {
         return this->_lastName;
     }
-    void SetLastName(std::string lastName) {
+    void SetLastName(QString lastName) {
         this->_lastName = lastName;
     }
-    std::time_t GetBirthday() {
+    QDate GetBirthday() {
         return this->_birthday;
     }
-    void SetBirthday(std::time_t birthday) {
+    void SetBirthday(QDate birthday) {
         this->_birthday = birthday;
     }
-    std::string GetFullName() {
-        std::stringstream ss;
-        ss << this->_firstName << ' ' << this->_lastName;
-        return ss.str();
+    QString GetFullName() {
+        return this->_firstName + ' ' + this->_lastName;
     }
     int GetAge() {
-        return std::difftime(this->_birthday, std::time(0)) *
-                60 * // minutes
-                60 * // hours
-                24 * // days
-                365.25;
+        return _birthday.daysTo(QDate::currentDate()) / 365.25;
     }
 
 private:
-    std::string _firstName;
-    std::string _lastName;
-    std::time_t _birthday;
+    QString _firstName;
+    QString _lastName;
+    QDate _birthday;
 };
 
 #endif // USER_H

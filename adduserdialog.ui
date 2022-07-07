@@ -6,68 +6,73 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>383</width>
-    <height>150</height>
+    <width>166</width>
+    <height>143</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>110</y>
-     <width>341</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-   </property>
-  </widget>
-  <widget class="QWidget" name="formLayoutWidget">
+  <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>10</y>
-     <width>371</width>
-     <height>91</height>
+     <y>0</y>
+     <width>160</width>
+     <height>134</height>
     </rect>
    </property>
-   <layout class="QFormLayout" name="formLayout">
-    <item row="0" column="0">
-     <widget class="QLabel" name="firstNameLabel">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="newUserTitle">
       <property name="text">
-       <string>first name: </string>
+       <string>add a new user</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="1">
-     <widget class="QLineEdit" name="firstNameLineEdit"/>
+    <item>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="firstNameLabel">
+        <property name="text">
+         <string>first name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="firstNameLineEdit"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="lastNameLabel">
+        <property name="text">
+         <string>last name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="lastNameLineEdit"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="birthdayLabel">
+        <property name="text">
+         <string>birthday</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QDateEdit" name="birthdayDateEdit"/>
+      </item>
+     </layout>
     </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="lastNameLabel">
-      <property name="text">
-       <string>last name: </string>
+    <item>
+     <widget class="QDialogButtonBox" name="buttonBox">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="standardButtons">
+       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
       </property>
      </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="lastNameLineEdit"/>
-    </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="birthdayLabel">
-      <property name="text">
-       <string>birthday: </string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="QDateEdit" name="birthdayDateEdit"/>
     </item>
    </layout>
   </widget>

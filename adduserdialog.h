@@ -2,7 +2,7 @@
 #define ADDUSERDIALOG_H
 
 #include <QDialog>
-
+#include <qtablewidget.h>
 #include "user.h"
 
 namespace Ui {
@@ -14,12 +14,27 @@ class AddUserDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit AddUserDialog(QWidget *parent = nullptr);
+    explicit AddUserDialog(QWidget *parent = nullptr,
+                           User *newUser = nullptr,
+                           QTableWidget *table = nullptr);
     ~AddUserDialog();
+
+private slots:
+    void on_buttonBox_accepted();
+
+    void on_firstNameLineEdit_textEdited(const QString &arg1);
+
+    void on_lastNameLineEdit_textEdited(const QString &arg1);
+
+    void on_birthdayDateEdit_userDateChanged(const QDate &date);
+
+signals:
+    void user_submitted(User *user);
 
 private:
     Ui::AddUserDialog *ui;
-    User *_newUser;
+    User *newUser;
+    QTableWidget *table;
 };
 
 #endif // ADDUSERDIALOG_H

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>841</width>
-    <height>446</height>
+    <width>596</width>
+    <height>385</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,127 +18,99 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
-      <width>841</width>
-      <height>401</height>
+      <y>20</y>
+      <width>581</width>
+      <height>311</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,3,0">
-     <property name="sizeConstraint">
-      <enum>QLayout::SetDefaultConstraint</enum>
-     </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <layout class="QVBoxLayout" name="optionsPane">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QLabel" name="MediumOptions">
-         <property name="text">
-          <string>medium options</string>
-         </property>
-        </widget>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QLabel" name="userLabel">
+           <property name="text">
+            <string>users</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="addUserButton">
+           <property name="text">
+            <string>add user</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
-        <widget class="QPushButton" name="AddMedium">
-         <property name="text">
-          <string>add medium</string>
-         </property>
+        <widget class="QTableWidget" name="userTable">
+         <column>
+          <property name="text">
+           <string>first name</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>last name</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>age</string>
+          </property>
+         </column>
         </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="RemoveMedium">
-         <property name="text">
-          <string>remove medium</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="EditMedium">
-         <property name="text">
-          <string>edit medium</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="BorrowMedium">
-         <property name="text">
-          <string>borrow medium</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="ReturnMedium">
-         <property name="text">
-          <string>return medium</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="UserOptions">
-         <property name="text">
-          <string>user options</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="AddUser">
-         <property name="text">
-          <string>add user</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="EditUser">
-         <property name="text">
-          <string>edit user</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="RemoveUser">
-         <property name="text">
-          <string>remove user</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="dataPane">
+      <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QTableWidget" name="MediumTable"/>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QLabel" name="mediumLabel">
+           <property name="text">
+            <string>media</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="addMediumButton">
+           <property name="text">
+            <string>add medium</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="borrowMediumButton">
+           <property name="text">
+            <string>borrow medium</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
-        <widget class="QTableWidget" name="UserTable"/>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QVBoxLayout" name="detailsPane">
-       <item>
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>details</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QTextEdit" name="Details"/>
+        <widget class="QTableWidget" name="mediumTable"/>
        </item>
       </layout>
      </item>
     </layout>
+   </widget>
+   <widget class="QLabel" name="titleLabel">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>0</y>
+      <width>49</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>library</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -146,7 +118,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>841</width>
+     <width>596</width>
      <height>22</height>
     </rect>
    </property>

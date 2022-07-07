@@ -20,16 +20,9 @@ public:
     ~MainWindow();
 
 private slots:
-    void addMedium();
-    void removeMedium() { qDebug() << "test"; }
-    void editMedium() { qDebug() << "test"; }
-    void borrowMedium() { qDebug() << "test"; }
-    void returnMedium() { qDebug() << "test"; }
-    void addUser() { qDebug() << "test"; }
-    void removeUser() { qDebug() << "test"; }
-    void editUser() { qDebug() << "test"; }
-    void selectMedium() {}
-    void selectUser() {}
+    void on_addUserButton_released();
+    void on_addMediumButton_released();
+    void on_borrowMediumButton_released();
 
 private:
     Ui::MainWindow *ui;
