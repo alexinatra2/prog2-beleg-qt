@@ -46,7 +46,8 @@ void MainWindow::removeUser() {
 
 void MainWindow::on_addMediumButton_released()
 {
-    MediumChoiceDialog *dialog = new MediumChoiceDialog(this);
+    Medium *medium = nullptr;
+    MediumChoiceDialog *dialog = new MediumChoiceDialog(this, medium);
     connect(dialog, SIGNAL(medium_submitted(Medium *)), this, SLOT(addMedium(Medium *)));
     dialog->exec();
 }

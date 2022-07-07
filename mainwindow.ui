@@ -6,24 +6,24 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>910</width>
-    <height>393</height>
+    <width>744</width>
+    <height>427</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="horizontalLayoutWidget">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>20</y>
-      <width>831</width>
-      <height>311</height>
+      <x>10</x>
+      <y>10</y>
+      <width>711</width>
+      <height>371</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
@@ -71,57 +71,53 @@
       </layout>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <widget class="QLabel" name="mediumLabel">
-           <property name="text">
-            <string>media</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="addMediumButton">
-           <property name="text">
-            <string>add medium</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="borrowMediumButton">
-           <property name="text">
-            <string>borrow medium</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        <widget class="QLabel" name="mediumLabel">
+         <property name="text">
+          <string>media</string>
+         </property>
+        </widget>
        </item>
        <item>
-        <widget class="QTableWidget" name="mediumTable">
-         <column>
-          <property name="text">
-           <string>title</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>description</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>is available</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>options</string>
-          </property>
-         </column>
+        <widget class="QPushButton" name="addMediumButton">
+         <property name="text">
+          <string>add medium</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="borrowMediumButton">
+         <property name="text">
+          <string>borrow medium</string>
+         </property>
         </widget>
        </item>
       </layout>
+     </item>
+     <item>
+      <widget class="QTableWidget" name="mediumTable">
+       <column>
+        <property name="text">
+         <string>title</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>description</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>is available</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>options</string>
+        </property>
+       </column>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -131,7 +127,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>910</width>
+     <width>744</width>
      <height>22</height>
     </rect>
    </property>
