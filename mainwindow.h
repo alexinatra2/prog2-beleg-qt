@@ -23,6 +23,7 @@ private slots:
     void on_addUserButton_released();
     void on_addMediumButton_released();
     void on_borrowMediumButton_released();
+    void addUser(User *user);
 
 private:
     Ui::MainWindow *ui;

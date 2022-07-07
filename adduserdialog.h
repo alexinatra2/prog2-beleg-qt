@@ -14,9 +14,7 @@ class AddUserDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit AddUserDialog(QWidget *parent = nullptr,
-                           User *newUser = nullptr,
-                           QTableWidget *table = nullptr);
+    explicit AddUserDialog(QWidget *parent = nullptr, User *newUser = nullptr);
     ~AddUserDialog();
 
 private slots:
@@ -34,7 +32,6 @@ signals:
 private:
     Ui::AddUserDialog *ui;
     User *newUser;
-    QTableWidget *table;
 };
 
 #endif // ADDUSERDIALOG_H

@@ -2,11 +2,10 @@
 #include "ui_adduserdialog.h"
 #include <QDebug>
 
-AddUserDialog::AddUserDialog(QWidget *parent, User *user, QTableWidget *table) :
+AddUserDialog::AddUserDialog(QWidget *parent, User *user) :
     QDialog(parent),
     ui(new Ui::AddUserDialog),
-    newUser(user),
-    table(table)
+    newUser(user)
 {
     ui->setupUi(this);
 }
@@ -17,12 +16,7 @@ AddUserDialog::~AddUserDialog()
 }
 
 void AddUserDialog::on_buttonBox_accepted() {
-    int lastRow = table->rowCount();
-    table->insertRow(lastRow);
-    table->setItem(lastRow, 0, new QTableWidgetItem(this->newUser->GetFirstName()));
-    table->setItem(lastRow, 1, new QTableWidgetItem(this->newUser->GetLastName()));
-    table->setItem(lastRow, 2, new QTableWidgetItem(QString::number(this->newUser->GetAge())));
-    accept();
+    emit user_submitted(this->newUser);
 }
 
 void AddUserDialog::on_firstNameLineEdit_textEdited(const QString &firstName)
