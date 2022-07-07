@@ -6,16 +6,16 @@
 #include "user.h"
 
 namespace Ui {
-class AddUserDialog;
+class UserDialog;
 }
 
-class AddUserDialog : public QDialog
+class UserDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit AddUserDialog(QWidget *parent = nullptr, User *newUser = nullptr);
-    ~AddUserDialog();
+    explicit UserDialog(QWidget *parent = nullptr, User *newUser = nullptr);
+    ~UserDialog();
 
 private slots:
     void on_buttonBox_accepted();
@@ -30,7 +30,7 @@ signals:
     void user_submitted(User *user);
 
 private:
-    Ui::AddUserDialog *ui;
+    Ui::UserDialog *ui;
     User *newUser;
 };
 

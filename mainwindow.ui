@@ -58,7 +58,12 @@
          </column>
          <column>
           <property name="text">
-           <string>age</string>
+           <string>birthday</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>options</string>
           </property>
          </column>
         </widget>
@@ -98,19 +103,6 @@
       </layout>
      </item>
     </layout>
-   </widget>
-   <widget class="QLabel" name="titleLabel">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>0</y>
-      <width>49</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>library</string>
-    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

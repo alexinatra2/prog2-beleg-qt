@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTableWidgetItem>
 #include "medium.h"
 #include "user.h"
 
@@ -24,6 +25,7 @@ private slots:
     void on_addMediumButton_released();
     void on_borrowMediumButton_released();
     void addUser(User *user);
+    void removeUser();
 
 private:
     Ui::MainWindow *ui;
