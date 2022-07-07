@@ -98,7 +98,23 @@
         </layout>
        </item>
        <item>
-        <widget class="QTableWidget" name="mediumTable"/>
+        <widget class="QTableWidget" name="mediumTable">
+         <column>
+          <property name="text">
+           <string>title</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>description</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>is available</string>
+          </property>
+         </column>
+        </widget>
        </item>
       </layout>
      </item>

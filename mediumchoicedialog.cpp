@@ -28,9 +28,6 @@ void MediumChoiceDialog::on_buttonBox_accepted()
     else if (ui->dvdButton->isChecked()) {
 
     }
-    else if (ui->bluerayButton->isChecked()) {
-
-    }
     else {
         reject();
     }

@@ -29,9 +29,9 @@ void MainWindow::addUser(User *user) {
     QTableWidget *table = ui->userTable;
     int row = table->rowCount();
     table->insertRow(row );
-    table->setItem(row, 0, new QTableWidgetItem(user->GetFirstName()));
-    table->setItem(row, 1, new QTableWidgetItem(user->GetLastName()));
-    table->setItem(row, 2, new QTableWidgetItem(user->GetBirthday().toString("dd/MM/yyyy")));
+    table->setItem(row, 0, new QTableWidgetItem(user->firstName()));
+    table->setItem(row, 1, new QTableWidgetItem(user->lastName()));
+    table->setItem(row, 2, new QTableWidgetItem(user->birthday().toString("dd/MM/yyyy")));
     QPushButton *removeButton = new QPushButton(tr("remove"), this);
     connect(removeButton, &QPushButton::released, this, &MainWindow::removeUser);
     table->setCellWidget(row, 3, removeButton);

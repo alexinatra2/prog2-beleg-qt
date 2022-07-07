@@ -8,9 +8,9 @@ AddUserDialog::AddUserDialog(QWidget *parent, User *user) :
     newUser(user)
 {
     ui->setupUi(this);
-    ui->firstNameLineEdit->setText(user->GetFirstName());
-    ui->lastNameLineEdit->setText(user->GetLastName());
-    ui->birthdayDateEdit->setDate(user->GetBirthday());
+    ui->firstNameLineEdit->setText(user->firstName());
+    ui->lastNameLineEdit->setText(user->lastName());
+    ui->birthdayDateEdit->setDate(user->birthday());
 }
 
 AddUserDialog::~AddUserDialog()
@@ -24,18 +24,18 @@ void AddUserDialog::on_buttonBox_accepted() {
 
 void AddUserDialog::on_firstNameLineEdit_textEdited(const QString &firstName)
 {
-    this->newUser->SetFirstName(firstName);
+    this->newUser->setFirstName(firstName);
 }
 
 
 void AddUserDialog::on_lastNameLineEdit_textEdited(const QString &lastName)
 {
-    this->newUser->SetLastName(lastName);
+    this->newUser->setLastName(lastName);
 }
 
 
 void AddUserDialog::on_birthdayDateEdit_userDateChanged(const QDate &date)
 {
-    this->newUser->SetBirthday(date);
+    this->newUser->setBirthday(date);
 }
 
