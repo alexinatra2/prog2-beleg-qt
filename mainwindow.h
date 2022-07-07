@@ -26,6 +26,8 @@ private slots:
     void on_borrowMediumButton_released();
     void addUser(User *user);
     void removeUser();
+    void addMedium(Medium *medium);
+    void removeMedium();
 
 private:
     Ui::MainWindow *ui;

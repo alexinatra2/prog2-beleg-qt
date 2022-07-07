@@ -2,6 +2,7 @@
 #define ADDCDDIALOG_H
 
 #include <QDialog>
+#include "medium.h"
 
 namespace Ui {
 class AddCdDialog;
@@ -14,6 +15,9 @@ class AddCdDialog : public QDialog
 public:
     explicit AddCdDialog(QWidget *parent = nullptr);
     ~AddCdDialog();
+
+signals:
+    void medium_submitted(Medium *);
 
 private:
     Ui::AddCdDialog *ui;

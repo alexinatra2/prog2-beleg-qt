@@ -2,6 +2,7 @@
 #define MEDIUMCHOICEDIALOG_H
 
 #include <QDialog>
+#include "medium.h"
 
 namespace Ui {
 class MediumChoiceDialog;
@@ -17,6 +18,9 @@ public:
 
 private slots:
     void on_buttonBox_accepted();
+
+signals:
+    void medium_submitted(Medium *);
 
 private:
     Ui::MediumChoiceDialog *ui;

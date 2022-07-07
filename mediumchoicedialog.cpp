@@ -20,13 +20,16 @@ MediumChoiceDialog::~MediumChoiceDialog()
 void MediumChoiceDialog::on_buttonBox_accepted()
 {
     if (ui->bookButton->isChecked()) {
-
+        AddBookDialog *dialog = new AddBookDialog();
+        dialog->exec();
     }
     else if (ui->cdButton->isChecked()) {
-
+        AddCdDialog *dialog = new AddCdDialog();
+        dialog->exec();
     }
     else if (ui->dvdButton->isChecked()) {
-
+        AddDvdDialog *dialog = new AddDvdDialog();
+        dialog->exec();
     }
     else {
         reject();

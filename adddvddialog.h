@@ -2,6 +2,7 @@
 #define ADDDVDDIALOG_H
 
 #include <QDialog>
+#include "medium.h"
 
 namespace Ui {
 class AddDvdDialog;
@@ -14,6 +15,9 @@ class AddDvdDialog : public QDialog
 public:
     explicit AddDvdDialog(QWidget *parent = nullptr);
     ~AddDvdDialog();
+
+signals:
+    void medium_submitted(Medium *);
 
 private:
     Ui::AddDvdDialog *ui;

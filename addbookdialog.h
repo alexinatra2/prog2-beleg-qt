@@ -2,6 +2,7 @@
 #define ADDBOOKDIALOG_H
 
 #include <QDialog>
+#include "medium.h"
 
 namespace Ui {
 class AddBookDialog;
@@ -14,6 +15,9 @@ class AddBookDialog : public QDialog
 public:
     explicit AddBookDialog(QWidget *parent = nullptr);
     ~AddBookDialog();
+
+signals:
+    void medium_submitted(Medium *);
 
 private:
     Ui::AddBookDialog *ui;

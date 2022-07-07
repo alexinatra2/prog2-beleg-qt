@@ -4,6 +4,7 @@
 #include <QDateTime>
 #include <QSignalMapper>
 #include "adduserdialog.h"
+#include "mediumchoicedialog.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -45,7 +46,27 @@ void MainWindow::removeUser() {
 
 void MainWindow::on_addMediumButton_released()
 {
+    MediumChoiceDialog *dialog = new MediumChoiceDialog(this);
+    connect(dialog, SIGNAL(medium_submitted(Medium *)), this, SLOT(addMedium(Medium *)));
+    dialog->exec();
+}
 
+void MainWindow::addMedium(Medium *medium) {
+    QTableWidget *table = ui->mediumTable;
+    int row = table->rowCount();
+    table->insertRow(row);
+    table->setItem(row, 0, new QTableWidgetItem(medium->title()));
+    table->setItem(row, 1, new QTableWidgetItem(medium->description()));
+    table->setItem(row, 2, new QTableWidgetItem(QVariant(true).toString()));
+    QPushButton *removeButton = new QPushButton(tr("remove"), this);
+    connect(removeButton, &QPushButton::released, this, &MainWindow::removeMedium);
+    table->setCellWidget(row, 3, removeButton);
+}
+
+void MainWindow::removeMedium() {
+    QTableWidget *table = ui->mediumTable;
+    int row = table->currentRow();
+    table->removeRow(row);
 }
 
 
