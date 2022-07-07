@@ -1,7 +1,7 @@
 #include "dvd.h"
 
 Dvd::Dvd(QObject *parent)
-    : VideoMedium{parent}
+    : Medium{parent}
 {
-    this->_type = DVD;
+
 }

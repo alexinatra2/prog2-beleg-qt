@@ -20,7 +20,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_addUserButton_released()
 {
     User *user = new User();
-    UserDialog *dialog = new UserDialog(this, user);
+    AddUserDialog *dialog = new AddUserDialog(this, user);
     connect(dialog, SIGNAL(user_submitted(User *)), this, SLOT(addUser(User *)));
     dialog->exec();
 }

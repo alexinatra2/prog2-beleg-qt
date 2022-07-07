@@ -9,19 +9,39 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    addbookdialog.cpp \
+    addcddialog.cpp \
+    adddvddialog.cpp \
     adduserdialog.cpp \
+    book.cpp \
+    cd.cpp \
+    dvd.cpp \
     main.cpp \
     mainwindow.cpp \
+    medium.cpp \
+    mediumchoicedialog.cpp \
     user.cpp
 
 HEADERS += \
+    addbookdialog.h \
+    addcddialog.h \
+    adddvddialog.h \
     adduserdialog.h \
+    book.h \
+    cd.h \
+    dvd.h \
     mainwindow.h \
+    medium.h \
+    mediumchoicedialog.h \
     user.h
 
 FORMS += \
+    addbookdialog.ui \
+    addcddialog.ui \
+    adddvddialog.ui \
     adduserdialog.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    mediumchoicedialog.ui
 
 TRANSLATIONS += \
     prog2-beleg-qt_de_DE.ts

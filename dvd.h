@@ -1,9 +1,9 @@
 #ifndef DVD_H
 #define DVD_H
 
-#include "videomedium.h"
+#include "medium.h"
 
-class Dvd : public VideoMedium
+class Dvd : public Medium
 {
 public:
     explicit Dvd(QObject *parent = nullptr);
