@@ -194,7 +194,11 @@ void MainWindow::importXml() {
     QDomDocument document;
     QFile file("tabledata.xml");
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        if (!document.setContent(&file)) {
+        QTextStream in(&file);
+        QString content = in.readAll();
+        content.replace("\n", "");
+        qDebug() << content;
+        if (!document.setContent(content)) {
             QDomElement usersElement = document.firstChildElement("users");
             QDomNodeList userElements = usersElement.elementsByTagName("user");
             for (int i = 0; i < userElements.count(); i++) {
@@ -283,8 +287,9 @@ void MainWindow::exportXml()
     QDomElement mediaElement = document.createElement("media");
     document.appendChild(mediaElement);
     for (Medium *medium: *media) {
-        QString type = typeid(*medium).name();
-        if (type == "class Book") {
+        qDebug() << medium->type();
+        switch(medium->type()) {
+        case MediumType::BOOK: {
             Book *book = static_cast<Book *>(medium);
             QDomElement bookElement = document.createElement("book");
             bookElement.setAttribute("title", book->title());
@@ -294,7 +299,9 @@ void MainWindow::exportXml()
             bookElement.setAttribute("chapters", book->chapters());
             bookElement.setAttribute("borrower", getUserIndex(book->borrower()));
             mediaElement.appendChild(bookElement);
-        } else if (type == "class Cd") {
+            break;
+        }
+        case MediumType::CD: {
             Cd *cd = static_cast<Cd *>(medium);
             QDomElement cdElement = document.createElement("cd");
             cdElement.setAttribute("title", cd->title());
@@ -304,7 +311,9 @@ void MainWindow::exportXml()
             cdElement.setAttribute("numberOfTracks", cd->numberOfTracks());
             cdElement.setAttribute("borrower", getUserIndex(cd->borrower()));
             mediaElement.appendChild(cdElement);
-        } else if (type == "class Dvd") {
+            break;
+        }
+        case MediumType::DVD: {
             Dvd *dvd = static_cast<Dvd *>(medium);
             QDomElement dvdElement = document.createElement("dvd");
             dvdElement.setAttribute("title", dvd->title());
@@ -313,6 +322,13 @@ void MainWindow::exportXml()
             dvdElement.setAttribute("length", dvd->length());
             dvdElement.setAttribute("borrower", getUserIndex(dvd->borrower()));
             mediaElement.appendChild(dvdElement);
+            break;
+        }
+        default:
+            QMessageBox messageBox;
+            messageBox.setText("something went wrong");
+            messageBox.setStandardButtons(QMessageBox::Ok);
+            messageBox.exec();
         }
     }
 

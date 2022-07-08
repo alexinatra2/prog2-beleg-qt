@@ -3,7 +3,7 @@
 Dvd::Dvd(QObject *parent)
     : Medium{parent}
 {
-
+    setType(DVD);
 }
 
 QString Dvd::details()

@@ -45,3 +45,13 @@ bool Medium::available() const
 {
     return _borrower == nullptr;
 }
+
+MediumType Medium::type() const
+{
+    return _type;
+}
+
+void Medium::setType(MediumType newType)
+{
+    _type = newType;
+}

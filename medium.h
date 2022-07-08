@@ -6,6 +6,12 @@
 #include <sstream>
 #include "user.h"
 
+enum MediumType {
+    BOOK,
+    CD,
+    DVD
+};
+
 class Medium : public QObject
 {
     Q_OBJECT
@@ -21,6 +27,9 @@ public:
     User *borrower() const;
     bool available() const;
 
+    MediumType type() const;
+    void setType(MediumType newType);
+
 signals:
     void medium_submitted();
 
@@ -28,6 +37,7 @@ private:
     QString _title;
     QString _description;
     User *_borrower = nullptr;
+    MediumType _type;
 };
 
 #endif // MEDIUM_H

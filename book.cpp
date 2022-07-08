@@ -3,7 +3,7 @@
 Book::Book(QObject *parent)
     : Medium{parent}
 {
-
+    setType(BOOK);
 }
 
 QString Book::details()

@@ -3,7 +3,7 @@
 Cd::Cd(QObject *parent)
     : Medium{parent}
 {
-
+    setType(CD);
 }
 
 QString Cd::details()
