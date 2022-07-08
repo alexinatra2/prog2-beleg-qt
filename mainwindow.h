@@ -22,6 +22,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     int getUserIndex(User *user);
+    void importXml();
 
 private slots:
     void on_addUserButton_released();

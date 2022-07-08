@@ -20,14 +20,11 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    QFile file("tabledata.xml");
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-
-    }
-
     connect(this, SIGNAL(user_table_modified()), this, SLOT(populateUserTable()));
     connect(this, SIGNAL(medium_table_modified()), this, SLOT(populateMediumTable()));
     connect(this, SIGNAL(closing()), this, SLOT(exportXml()));
+
+    importXml();
 }
 
 MainWindow::~MainWindow()
@@ -191,6 +188,84 @@ int MainWindow::getUserIndex(User *user) {
     else {
         return -1;
     }
+}
+
+void MainWindow::importXml() {
+    QDomDocument document;
+    QFile file("tabledata.xml");
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        if (!document.setContent(&file)) {
+            QDomElement usersElement = document.firstChildElement("users");
+            QDomNodeList userElements = usersElement.elementsByTagName("user");
+            for (int i = 0; i < userElements.count(); i++) {
+                QDomNode userNode = userElements.at(i);
+                if (userNode.isElement()) {
+                    QDomElement userElement = userNode.toElement();
+                    User *user = new User();
+                    user->setFirstName(userElement.attribute("firstName"));
+                    user->setLastName(userElement.attribute("lastName"));
+                    user->setBirthday(QDate::fromString(userElement.attribute("birthday"), "dd/MM/yyyy"));
+                    users->push_back(user);
+                }
+            }
+            QDomElement mediaElement = document.firstChildElement("media");
+            QDomNodeList bookElements = mediaElement.elementsByTagName("book");
+            for (int i = 0; i < bookElements.count(); i++) {
+                QDomNode bookNode = bookElements.at(i);
+                if (bookNode.isElement()) {
+                    QDomElement bookElement = bookNode.toElement();
+                    Book *book = new Book();
+                    book->setTitle(bookElement.attribute("title"));
+                    book->setDescription(bookElement.attribute("description"));
+                    book->setAuthor(bookElement.attribute("author"));
+                    book->setPages(bookElement.attribute("pages").toInt());
+                    book->setChapters(bookElement.attribute("chapters").toInt());
+                    int borrowerIndex = bookElement.attribute("borrower").toInt();
+                    book->setBorrower(borrowerIndex >= 0 ? users->at(borrowerIndex): nullptr);
+                    media->push_back(book);
+                }
+            }
+            QDomNodeList cdElements = mediaElement.elementsByTagName("cd");
+            for (int i = 0; i < cdElements.count(); i++) {
+                QDomNode cdNode = bookElements.at(i);
+                if (cdNode.isElement()) {
+                    QDomElement cdElement = cdNode.toElement();
+                    Cd *cd = new Cd();
+                    cd->setTitle(cdElement.attribute("title"));
+                    cd->setDescription(cdElement.attribute("description"));
+                    cd->setTotalLength(cdElement.attribute("totalLength").toInt());
+                    cd->setNumberOfTracks(cdElement.attribute("numberOfTracks").toInt());
+                    cd->setReleaseDate(QDate::fromString(cdElement.attribute("releaseDate"), "dd/MM/yyyy"));
+                    int borrowerIndex = cdElement.attribute("borrower").toInt();
+                    cd->setBorrower(borrowerIndex >= 0 ? users->at(borrowerIndex): nullptr);
+                    media->push_back(cd);
+                }
+            }
+            QDomNodeList dvdElements = mediaElement.elementsByTagName("dvd");
+            for (int i = 0; i < dvdElements.count(); i++) {
+                QDomNode dvdNode = dvdElements.at(i);
+                if (dvdNode.isElement()) {
+                    QDomElement dvdElement = dvdNode.toElement();
+                    Dvd *dvd = new Dvd();
+                    dvd->setTitle(dvdElement.attribute("title"));
+                    dvd->setDescription(dvdElement.attribute("description"));
+                    dvd->setAgeRating(dvdElement.attribute("ageRating").toInt());
+                    dvd->setLength(dvdElement.attribute("length").toInt());
+                    int borrowerIndex = dvdElement.attribute("borrower").toInt();
+                    dvd->setBorrower(borrowerIndex >= 0 ? users->at(borrowerIndex): nullptr);
+                    media->push_back(dvd);
+                }
+            }
+        }
+        file.close();
+    } else {
+        QMessageBox messageBox;
+        messageBox.setText("the file tabledata.xml does not yet exist");
+        messageBox.setStandardButtons(QMessageBox::Ok);
+        messageBox.exec();
+    }
+    emit medium_table_modified();
+    emit user_table_modified();
 }
 
 void MainWindow::exportXml()
