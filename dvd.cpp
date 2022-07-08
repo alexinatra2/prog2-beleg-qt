@@ -35,3 +35,7 @@ void Dvd::setAgeRating(int newAgeRating)
 {
     _ageRating = newAgeRating;
 }
+
+bool Dvd::isAllowedToBeBorrowedBy(User *user) {
+    return available() && user->age() >= this->ageRating();
+}

@@ -4,22 +4,22 @@
 #include <QObject>
 #include <QString>
 #include <sstream>
+#include "user.h"
 
 class Medium : public QObject
 {
     Q_OBJECT
 public:
     explicit Medium(QObject *parent = nullptr);
-    virtual QString details() {
-        return QString::fromStdString("");
-    }
-
+    virtual QString details() = 0;
+    virtual bool isAllowedToBeBorrowedBy(User *user);
     const QString &title() const;
     void setTitle(const QString &newTitle);
     const QString &description() const;
     void setDescription(const QString &newDescription);
+    void setBorrower(User *newBorrower);
+    User *borrower() const;
     bool available() const;
-    void setAvailable(bool newAvailable);
 
 signals:
     void medium_submitted();
@@ -27,7 +27,7 @@ signals:
 private:
     QString _title;
     QString _description;
-    bool _available;
+    User *_borrower;
 };
 
 #endif // MEDIUM_H

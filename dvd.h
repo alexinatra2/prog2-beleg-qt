@@ -8,11 +8,11 @@ class Dvd : public Medium
 public:
     explicit Dvd(QObject *parent = nullptr);
     QString details();
-
     int length() const;
     void setLength(int newLength);
     int ageRating() const;
     void setAgeRating(int newAgeRating);
+    bool isAllowedToBeBorrowedBy(User *user);
 
 private:
     unsigned int _length;

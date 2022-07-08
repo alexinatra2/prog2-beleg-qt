@@ -26,12 +26,17 @@ void Medium::setDescription(const QString &newDescription)
     _description = newDescription;
 }
 
-bool Medium::available() const
+void Medium::setBorrower(User *newBorrower)
 {
-    return _available;
+    _borrower = newBorrower;
 }
 
-void Medium::setAvailable(bool newAvailable)
+User *Medium::borrower() const
 {
-    _available = newAvailable;
+    return _borrower;
+}
+
+bool Medium::available() const
+{
+    return _borrower != nullptr;
 }

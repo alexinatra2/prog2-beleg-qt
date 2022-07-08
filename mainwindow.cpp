@@ -31,13 +31,22 @@ void MainWindow::on_addUserButton_released()
 }
 
 void MainWindow::addUser(User *user) {
+    if (user->age() < 12) {
+        QMessageBox messageBox;
+        messageBox.setText("User must be of age 12 or older to be added.");
+        messageBox.setStandardButtons(QMessageBox::Ok);
+        messageBox.exec();
+        return;
+    }
     users->push_back(user);
     emit user_table_modified();
 }
 
 void MainWindow::removeUser() {
-    int row = ui->userTable->currentRow();
-    ui->userTable->removeRow(row);
+    QTableWidget *table = ui->userTable;
+    int row = table->currentRow();
+    users->erase(users->begin() + row);
+    emit user_table_modified();
 }
 
 void MainWindow::populateUserTable() {
@@ -93,7 +102,7 @@ void MainWindow::populateMediumTable() {
         table->insertRow(row);
         table->setItem(row, 0, new QTableWidgetItem(m->title()));
         table->setItem(row, 1, new QTableWidgetItem(m->description()));
-        table->setItem(row, 2, new QTableWidgetItem(QVariant(true).toString()));
+        table->setItem(row, 2, new QTableWidgetItem(QVariant(m->available()).toString()));
 
         QPushButton *removeButton = new QPushButton(tr("remove"), this);
         connect(removeButton, &QPushButton::released, this, &MainWindow::removeMedium);
