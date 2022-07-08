@@ -1,6 +1,6 @@
 # prog2-beleg-qt
 
-This project is an assignment for the course "Programmieren 2" at HTW Dresden. The objective is to program an application that simulates a library. The requirements were
+This project is an assignment for the course "Programmierung II" at HTW Dresden. The objective is to program an application that simulates a library. The requirements were
 as follows:
 1. different types of media should be available
 2. users should be managed by the application
