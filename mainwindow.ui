@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>744</width>
+    <width>629</width>
     <height>427</height>
    </rect>
   </property>
@@ -19,7 +19,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>711</width>
+      <width>611</width>
       <height>371</height>
      </rect>
     </property>
@@ -107,7 +107,7 @@
        </column>
        <column>
         <property name="text">
-         <string>borrowing options</string>
+         <string>borrow/return</string>
         </property>
        </column>
        <column>
@@ -130,7 +130,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>744</width>
+     <width>629</width>
      <height>22</height>
     </rect>
    </property>

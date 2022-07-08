@@ -21,6 +21,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    int getUserIndex(User *user);
 
 private slots:
     void on_addUserButton_released();
@@ -39,13 +40,19 @@ private slots:
     void populateUserTable();
     void populateMediumTable();
 
+    void exportXml();
+
 signals:
     void user_table_modified();
     void medium_table_modified();
+    void closing();
 
 private:
     Ui::MainWindow *ui;
     std::vector<Medium *> *media = new std::vector<Medium *>();
     std::vector<User *> *users = new std::vector<User *>();
+
+protected:
+    void closeEvent(QCloseEvent *event);
 };
 #endif // MAINWINDOW_H

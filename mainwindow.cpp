@@ -3,10 +3,16 @@
 
 #include <QDateTime>
 #include <QMessageBox>
+#include <QtXml>
 
 #include "adduserdialog.h"
 #include "mediumchoicedialog.h"
 #include "borrowmediumdialog.h"
+
+#include "book.h"
+#include "cd.h"
+#include "dvd.h"
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,8 +20,14 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    QFile file("tabledata.xml");
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+
+    }
+
     connect(this, SIGNAL(user_table_modified()), this, SLOT(populateUserTable()));
     connect(this, SIGNAL(medium_table_modified()), this, SLOT(populateMediumTable()));
+    connect(this, SIGNAL(closing()), this, SLOT(exportXml()));
 }
 
 MainWindow::~MainWindow()
@@ -166,5 +178,79 @@ void MainWindow::populateMediumTable() {
         connect(detailsButton, &QPushButton::released, this, &MainWindow::getMediumDetails);
         table->setCellWidget(row, 6, detailsButton);
     }
+}
+
+int MainWindow::getUserIndex(User *user) {
+    if (user == nullptr) {
+        return -1;
+    }
+    std::vector<User *>::iterator iterator = std::find(users->begin(), users->end(), user);
+    if (iterator != users->cend()) {
+        return std::distance(users->begin(), iterator);
+    }
+    else {
+        return -1;
+    }
+}
+
+void MainWindow::exportXml()
+{
+    QDomDocument document;
+    QDomElement usersElement = document.createElement("users");
+    document.appendChild(usersElement);
+    for (User *user: *users) {
+        QDomElement userElement = document.createElement("user");
+        userElement.setAttribute("firstName", user->firstName());
+        userElement.setAttribute("lastName", user->lastName());
+        userElement.setAttribute("birthday", user->birthday().toString("dd/MM/yyyy"));
+        usersElement.appendChild(userElement);
+    }
+    QDomElement mediaElement = document.createElement("media");
+    document.appendChild(mediaElement);
+    for (Medium *medium: *media) {
+        QString type = typeid(*medium).name();
+        if (type == "Book") {
+            Book *book = static_cast<Book *>(medium);
+            QDomElement bookElement = document.createElement("book");
+            bookElement.setAttribute("title", book->title());
+            bookElement.setAttribute("description", book->description());
+            bookElement.setAttribute("author", book->author());
+            bookElement.setAttribute("pages", book->pages());
+            bookElement.setAttribute("chapters", book->chapters());
+            bookElement.setAttribute("borrower", getUserIndex(book->borrower()));
+            mediaElement.appendChild(bookElement);
+        } else if (type == "Cd") {
+            Cd *cd = static_cast<Cd *>(medium);
+            QDomElement cdElement = document.createElement("cd");
+            cdElement.setAttribute("title", cd->title());
+            cdElement.setAttribute("description", cd->description());
+            cdElement.setAttribute("totalLength", cd->totalLength());
+            cdElement.setAttribute("releaseDate", cd->releaseDate().toString("dd/MM/yyyy"));
+            cdElement.setAttribute("numberOfTracks", cd->numberOfTracks());
+            cdElement.setAttribute("borrower", getUserIndex(cd->borrower()));
+            mediaElement.appendChild(cdElement);
+        } else if (type == "Dvd") {
+            Dvd *dvd = static_cast<Dvd *>(medium);
+            QDomElement dvdElement = document.createElement("dvd");
+            dvdElement.setAttribute("title", dvd->title());
+            dvdElement.setAttribute("description", dvd->description());
+            dvdElement.setAttribute("ageRating", dvd->ageRating());
+            dvdElement.setAttribute("length", dvd->length());
+            dvdElement.setAttribute("borrower", getUserIndex(dvd->borrower()));
+            mediaElement.appendChild(dvdElement);
+        }
+    }
+
+    QFile file("tabledata.xml");
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QTextStream textStream(&file);
+        textStream << document.toString();
+        file.close();
+    }
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    emit closing();
 }
 
