@@ -1,0 +1,11 @@
+<users>
+ <user firstName="Hans" birthday="08/07/1981" lastName="Huckebein"/>
+ <user firstName="Moritz" birthday="03/12/1995" lastName="Frank"/>
+ <user firstName="Elias" birthday="08/07/2010" lastName="Winter"/>
+ <user firstName="Maria" birthday="01/01/1991" lastName="Schmidt"/>
+</users>
+<media>
+ <book description="about Wizards" title="Harry Potter and the Philosopher's stone" chapters="17" author="J. K. Rowling" pages="22" borrower="0"/>
+ <dvd description="boring" title="Kill Bill: Volume 1" length="50" ageRating="18" borrower="-1"/>
+ <cd description="Queen by Queen" title="Queen" numberOfTracks="10" totalLength="40" releaseDate="13/07/1973" borrower="2"/>
+</media>
