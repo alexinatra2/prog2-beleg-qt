@@ -11,3 +11,4 @@ as follows:
 
 This application was developt using QtCreator 7.0.1 (Community) on Windows and debugged with the Desktop (x86-windows-msvc2019-pe-64) toolkit. The applications make tool
 is set to qmake. The additional dependency xml was added to store the data. 
+It has been tested on Windows and an Ubuntu 20.04.1 virtual machine with the commands `qmake && make` followed by `./prog2-beleg-qt`
