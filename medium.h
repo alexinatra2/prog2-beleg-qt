@@ -27,7 +27,7 @@ signals:
 private:
     QString _title;
     QString _description;
-    User *_borrower;
+    User *_borrower = nullptr;
 };
 
 #endif // MEDIUM_H

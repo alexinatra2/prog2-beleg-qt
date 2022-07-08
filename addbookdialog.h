@@ -13,7 +13,8 @@ class AddBookDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit AddBookDialog(QWidget *parent = nullptr, Book *book = nullptr);
+    explicit AddBookDialog(QWidget *parent = nullptr,
+                           Book *book = nullptr);
     ~AddBookDialog();
 
 signals:
@@ -21,16 +22,11 @@ signals:
 
 private slots:
     void on_buttonBox_accepted();
-
-    void on_titleLineEdit_textEdited(const QString &arg1);
-
-    void on_descriptionLineEdit_textEdited(const QString &arg1);
-
-    void on_authorLineEdit_textEdited(const QString &arg1);
-
-    void on_pagesSpinBox_valueChanged(int arg1);
-
-    void on_chaptersSpinBox_valueChanged(int arg1);
+    void on_titleLineEdit_textEdited(const QString &);
+    void on_descriptionLineEdit_textEdited(const QString &);
+    void on_authorLineEdit_textEdited(const QString &);
+    void on_pagesSpinBox_valueChanged(int);
+    void on_chaptersSpinBox_valueChanged(int);
 
 private:
     Ui::AddBookDialog *ui;
