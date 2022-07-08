@@ -14,6 +14,7 @@ SOURCES += \
     adddvddialog.cpp \
     adduserdialog.cpp \
     book.cpp \
+    borrowmediumdialog.cpp \
     cd.cpp \
     dvd.cpp \
     main.cpp \
@@ -28,6 +29,7 @@ HEADERS += \
     adddvddialog.h \
     adduserdialog.h \
     book.h \
+    borrowmediumdialog.h \
     cd.h \
     dvd.h \
     mainwindow.h \
@@ -40,6 +42,7 @@ FORMS += \
     addcddialog.ui \
     adddvddialog.ui \
     adduserdialog.ui \
+    borrowmediumdialog.ui \
     mainwindow.ui \
     mediumchoicedialog.ui
 

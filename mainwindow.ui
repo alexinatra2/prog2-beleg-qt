@@ -107,6 +107,11 @@
        </column>
        <column>
         <property name="text">
+         <string>borrowing options</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
          <string>remove</string>
         </property>
        </column>

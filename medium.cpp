@@ -6,6 +6,11 @@ Medium::Medium(QObject *parent)
 
 }
 
+bool Medium::isAllowedToBeBorrowedBy(User *user)
+{
+    return available();
+}
+
 const QString &Medium::title() const
 {
     return _title;
@@ -38,5 +43,5 @@ User *Medium::borrower() const
 
 bool Medium::available() const
 {
-    return _borrower != nullptr;
+    return _borrower == nullptr;
 }

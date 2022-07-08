@@ -28,11 +28,15 @@ private slots:
 
     void addUser(User *user);
     void removeUser();
-    void populateUserTable();
 
     void addMedium(Medium *medium);
     void removeMedium();
     void getMediumDetails();
+    void borrowDialog();
+    void borrowMedium(User *user);
+    void returnMedium();
+
+    void populateUserTable();
     void populateMediumTable();
 
 signals:
