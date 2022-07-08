@@ -6,6 +6,17 @@ Cd::Cd(QObject *parent)
 
 }
 
+QString Cd::details()
+{
+    std::stringstream ss;
+    ss << "title: " << title().toStdString() << '\n';
+    ss << "description: " << description().toStdString() << '\n';
+    ss << "total length: " << totalLength() << '\n';
+    ss << "number of tracks: " << numberOfTracks() << '\n';
+    ss << "release date: " << releaseDate().toString().toStdString();
+    return QString::fromStdString(ss.str());
+}
+
 int Cd::totalLength() const
 {
     return _totalLength;

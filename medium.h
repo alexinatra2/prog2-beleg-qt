@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QString>
+#include <sstream>
 
 class Medium : public QObject
 {

@@ -7,6 +7,7 @@ class Book : public Medium
 {
 public:
     explicit Book(QObject *parent = nullptr);
+    QString details();
 
     const QString &author() const;
     void setAuthor(const QString &newAuthor);
@@ -17,8 +18,8 @@ public:
 
 private:
     QString _author;
-    int _pages;
-    int _chapters;
+    unsigned int _pages;
+    unsigned int _chapters;
 };
 
 #endif // BOOK_H

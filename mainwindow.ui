@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -63,7 +63,7 @@
          </column>
          <column>
           <property name="text">
-           <string>options</string>
+           <string>remove</string>
           </property>
          </column>
         </widget>
@@ -83,13 +83,6 @@
         <widget class="QPushButton" name="addMediumButton">
          <property name="text">
           <string>add medium</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="borrowMediumButton">
-         <property name="text">
-          <string>borrow medium</string>
          </property>
         </widget>
        </item>
@@ -114,7 +107,12 @@
        </column>
        <column>
         <property name="text">
-         <string>options</string>
+         <string>remove</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>details</string>
         </property>
        </column>
       </widget>

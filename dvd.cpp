@@ -6,6 +6,16 @@ Dvd::Dvd(QObject *parent)
 
 }
 
+QString Dvd::details()
+{
+    std::stringstream ss;
+    ss << "title: " << title().toStdString() << '\n';
+    ss << "description: " << description().toStdString() << '\n';
+    ss << "age rating: " << ageRating() << '\n';
+    ss << "length: " << length();
+    return QString::fromStdString(ss.str());
+}
+
 int Dvd::length() const
 {
     return _length;

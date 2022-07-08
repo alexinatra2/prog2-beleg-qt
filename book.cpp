@@ -6,6 +6,17 @@ Book::Book(QObject *parent)
 
 }
 
+QString Book::details()
+{
+    std::stringstream ss;
+    ss << "title: " << title().toStdString() << '\n';
+    ss << "description: " << description().toStdString() << '\n';
+    ss << "author: " << author().toStdString() << '\n';
+    ss << "pages: " << pages() << '\n';
+    ss << "chapters: " << chapters();
+    return QString::fromStdString(ss.str());
+}
+
 const QString &Book::author() const
 {
     return _author;

@@ -8,6 +8,7 @@ class Cd : public Medium
 {
 public:
     explicit Cd(QObject *parent = nullptr);
+    QString details();
 
     int totalLength() const;
     void setTotalLength(int newTotalLength);
@@ -17,8 +18,8 @@ public:
     void setReleaseDate(const QDate &newReleaseDate);
 
 private:
-    int _totalLength;
-    int _numberOfTracks;
+    unsigned int _totalLength;
+    unsigned int _numberOfTracks;
     QDate _releaseDate;
 
 };
