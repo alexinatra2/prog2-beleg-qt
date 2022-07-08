@@ -209,7 +209,7 @@ void MainWindow::exportXml()
     document.appendChild(mediaElement);
     for (Medium *medium: *media) {
         QString type = typeid(*medium).name();
-        if (type == "Book") {
+        if (type == "class Book") {
             Book *book = static_cast<Book *>(medium);
             QDomElement bookElement = document.createElement("book");
             bookElement.setAttribute("title", book->title());
@@ -219,7 +219,7 @@ void MainWindow::exportXml()
             bookElement.setAttribute("chapters", book->chapters());
             bookElement.setAttribute("borrower", getUserIndex(book->borrower()));
             mediaElement.appendChild(bookElement);
-        } else if (type == "Cd") {
+        } else if (type == "class Cd") {
             Cd *cd = static_cast<Cd *>(medium);
             QDomElement cdElement = document.createElement("cd");
             cdElement.setAttribute("title", cd->title());
@@ -229,7 +229,7 @@ void MainWindow::exportXml()
             cdElement.setAttribute("numberOfTracks", cd->numberOfTracks());
             cdElement.setAttribute("borrower", getUserIndex(cd->borrower()));
             mediaElement.appendChild(cdElement);
-        } else if (type == "Dvd") {
+        } else if (type == "class Dvd") {
             Dvd *dvd = static_cast<Dvd *>(medium);
             QDomElement dvdElement = document.createElement("dvd");
             dvdElement.setAttribute("title", dvd->title());
