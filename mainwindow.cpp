@@ -196,11 +196,9 @@ void MainWindow::importXml() {
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);
         QString content = in.readAll();
-        content.replace("\n", "");
-        qDebug() << content;
-        if (!document.setContent(content)) {
-            QDomElement usersElement = document.firstChildElement("users");
-            QDomNodeList userElements = usersElement.elementsByTagName("user");
+        qDebug() << "reading: \n" << content << '\n';
+        if (document.setContent(content)) {
+            QDomNodeList userElements = document.elementsByTagName("user");
             for (int i = 0; i < userElements.count(); i++) {
                 QDomNode userNode = userElements.at(i);
                 if (userNode.isElement()) {
@@ -212,8 +210,7 @@ void MainWindow::importXml() {
                     users->push_back(user);
                 }
             }
-            QDomElement mediaElement = document.firstChildElement("media");
-            QDomNodeList bookElements = mediaElement.elementsByTagName("book");
+            QDomNodeList bookElements = document.elementsByTagName("book");
             for (int i = 0; i < bookElements.count(); i++) {
                 QDomNode bookNode = bookElements.at(i);
                 if (bookNode.isElement()) {
@@ -229,7 +226,7 @@ void MainWindow::importXml() {
                     media->push_back(book);
                 }
             }
-            QDomNodeList cdElements = mediaElement.elementsByTagName("cd");
+            QDomNodeList cdElements = document.elementsByTagName("cd");
             for (int i = 0; i < cdElements.count(); i++) {
                 QDomNode cdNode = bookElements.at(i);
                 if (cdNode.isElement()) {
@@ -245,7 +242,7 @@ void MainWindow::importXml() {
                     media->push_back(cd);
                 }
             }
-            QDomNodeList dvdElements = mediaElement.elementsByTagName("dvd");
+            QDomNodeList dvdElements = document.elementsByTagName("dvd");
             for (int i = 0; i < dvdElements.count(); i++) {
                 QDomNode dvdNode = dvdElements.at(i);
                 if (dvdNode.isElement()) {
@@ -275,8 +272,10 @@ void MainWindow::importXml() {
 void MainWindow::exportXml()
 {
     QDomDocument document;
+    QDomElement tablesElement = document.createElement("tables");
+    document.appendChild(tablesElement);
     QDomElement usersElement = document.createElement("users");
-    document.appendChild(usersElement);
+    tablesElement.appendChild(usersElement);
     for (User *user: *users) {
         QDomElement userElement = document.createElement("user");
         userElement.setAttribute("firstName", user->firstName());
@@ -285,9 +284,8 @@ void MainWindow::exportXml()
         usersElement.appendChild(userElement);
     }
     QDomElement mediaElement = document.createElement("media");
-    document.appendChild(mediaElement);
+    tablesElement.appendChild(mediaElement);
     for (Medium *medium: *media) {
-        qDebug() << medium->type();
         switch(medium->type()) {
         case MediumType::BOOK: {
             Book *book = static_cast<Book *>(medium);
@@ -335,7 +333,8 @@ void MainWindow::exportXml()
     QFile file("tabledata.xml");
     if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         QTextStream textStream(&file);
-        textStream << document.toString();
+        textStream << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << document.toString();
+        qDebug() << "writing: \n" << document.toString() << '\n';
         file.close();
     }
 }
