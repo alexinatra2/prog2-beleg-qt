@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "medium.h"
+#include "sortmediadialog.h"
 #include "user.h"
 
 #include <QDebug>
@@ -43,15 +44,23 @@ private slots:
 
     void exportXml();
 
+    void on_sortMediaButton_released();
+    void setMediaDescending(bool newMediaDescending);
+    void setMediaOrder(SortingOrder newMediaOrder);
+    void sortMedia();
+
 signals:
     void user_table_modified();
     void medium_table_modified();
+    void media_sort_options_changed();
     void closing();
 
 private:
     Ui::MainWindow *ui;
     std::vector<Medium *> *media = new std::vector<Medium *>();
     std::vector<User *> *users = new std::vector<User *>();
+    bool mediaDescending = false;
+    SortingOrder mediaOrder = SortingOrder::INSERTED;
 
 protected:
     void closeEvent(QCloseEvent *event);

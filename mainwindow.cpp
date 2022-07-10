@@ -1,9 +1,11 @@
 #include "mainwindow.h"
+#include "sortmediadialog.h"
 #include "ui_mainwindow.h"
 
 #include <QDateTime>
 #include <QMessageBox>
 #include <QtXml>
+#include <algorithm>
 
 #include "adduserdialog.h"
 #include "mediumchoicedialog.h"
@@ -22,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(this, SIGNAL(user_table_modified()), this, SLOT(populateUserTable()));
     connect(this, SIGNAL(medium_table_modified()), this, SLOT(populateMediumTable()));
+    connect(this, SIGNAL(media_sort_options_changed()), this, SLOT(sortMedia()));
     connect(this, SIGNAL(closing()), this, SLOT(exportXml()));
 
     importXml();
@@ -81,7 +84,7 @@ void MainWindow::populateUserTable() {
         int row = table->rowCount();
         table->insertRow(row);
         table->setItem(row, 0, new QTableWidgetItem(u->firstName()));
-        table->setItem(row, 1, new QTableWidgetItem(u->lastName()));
+        table->setItem(row, 1, new QTableWidgetItem(u->lastName()));        
         table->setItem(row, 2, new QTableWidgetItem(u->birthday().toString("dd/MM/yyyy")));
 
         QPushButton *removeButton = new QPushButton(tr("remove"), this);
@@ -348,5 +351,56 @@ void MainWindow::exportXml()
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     emit closing();
+}
+
+void MainWindow::on_sortMediaButton_released()
+{
+    SortMediaDialog *dialog = new SortMediaDialog(this);
+    connect(dialog, SIGNAL(sort_selected(SortingOrder)), this, SLOT(setMediaOrder(SortingOrder)));
+    connect(dialog, SIGNAL(descending_selected(bool)), this, SLOT(setMediaDescending(bool)));
+    dialog->exec();
+}
+
+void MainWindow::setMediaOrder(SortingOrder mediaOrder)
+{
+    this->mediaOrder = mediaOrder;
+    emit media_sort_options_changed();
+}
+
+void MainWindow::setMediaDescending(bool mediaDescending)
+{
+    this->mediaDescending = mediaDescending;
+    emit media_sort_options_changed();
+}
+
+void MainWindow::sortMedia() {
+    switch (this->mediaOrder) {
+    case TYPE:
+        std::sort(this->media->begin(), this->media->end(), [&](Medium *m1, Medium *m2){return m1->type() < m2->type();});
+        break;
+    case AVAILABILITY:
+        std::sort(this->media->begin(), this->media->end(), [&](Medium *m1, Medium *m2){return m1->available();});
+        break;
+    case BORROWER:
+        std::sort(this->media->begin(),
+                  this->media->end(),
+                  [&](Medium *m1, Medium *m2){
+                        if (m1->borrower() == nullptr) {
+                            return true;
+                        }
+                        if (m2->borrower() == nullptr) {
+                            return false;
+                        }
+                        return m1->borrower()->fullName() < m2->borrower()->fullName();
+                    }
+        );
+        break;
+    case TITLE:
+        std::sort(this->media->begin(), this->media->end(), [&](Medium *m1, Medium *m2){return m1->title() < m2->title();});
+        break;
+    default:
+        break;
+    }
+    emit medium_table_modified();
 }
 

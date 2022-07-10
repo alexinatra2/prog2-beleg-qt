@@ -21,6 +21,7 @@ SOURCES += \
     mainwindow.cpp \
     medium.cpp \
     mediumchoicedialog.cpp \
+    sortmediadialog.cpp \
     user.cpp
 
 HEADERS += \
@@ -35,6 +36,7 @@ HEADERS += \
     mainwindow.h \
     medium.h \
     mediumchoicedialog.h \
+    sortmediadialog.h \
     user.h
 
 FORMS += \
@@ -44,7 +46,8 @@ FORMS += \
     adduserdialog.ui \
     borrowmediumdialog.ui \
     mainwindow.ui \
-    mediumchoicedialog.ui
+    mediumchoicedialog.ui \
+    sortmediadialog.ui
 
 TRANSLATIONS += \
     prog2-beleg-qt_de_DE.ts
