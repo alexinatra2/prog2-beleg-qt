@@ -159,8 +159,14 @@ void MainWindow::populateMediumTable() {
         table->insertRow(row);
         table->setItem(row, 0, new QTableWidgetItem(m->title()));
         table->setItem(row, 1, new QTableWidgetItem(m->description()));
-        table->setItem(row, 2, new QTableWidgetItem(QVariant(m->available()).toString()));
-        table->setItem(row, 3, new QTableWidgetItem(m->borrower() != nullptr ? m->borrower()->fullName() : "-"));
+
+        QTableWidgetItem *availabilityItem = new QTableWidgetItem(QVariant(m->available()).toString());
+        availabilityItem->setFlags(availabilityItem->flags() ^ Qt::ItemIsEditable);
+        table->setItem(row, 2, availabilityItem);
+
+        QTableWidgetItem *borrowerItem = new QTableWidgetItem(m->borrower() != nullptr ? m->borrower()->fullName() : "-");
+        borrowerItem->setFlags(borrowerItem->flags() ^ Qt::ItemIsEditable);
+        table->setItem(row, 3, borrowerItem);
 
         QPushButton *borrowButton = new QPushButton(tr(m->available() ? "borrow" : "return"), this);
         connect(borrowButton, &QPushButton::released, this,
