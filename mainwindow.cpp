@@ -388,13 +388,13 @@ void MainWindow::sortMedia() {
         std::sort(this->media->begin(),
                   this->media->end(),
                   [&](Medium *m1, Medium *m2){
-                        if (m1->borrower() == nullptr) {
-                            return true;
-                        }
-                        if (m2->borrower() == nullptr) {
+                        if (m1->available()) {
                             return false;
                         }
-                        return m1->borrower()->fullName() < m2->borrower()->fullName();
+                        if (m2->available()) {
+                            return true;
+                        }
+                        return QString::compare(m1->borrower()->fullName(), m2->borrower()->fullName()) < 0;
                     }
         );
         break;
