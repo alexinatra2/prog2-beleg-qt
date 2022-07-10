@@ -55,3 +55,15 @@ void Medium::setType(MediumType newType)
 {
     _type = newType;
 }
+
+const QString Medium::mediumTypeString(MediumType type)
+{
+    switch (type) {
+    case BOOK:
+        return "book";
+    case CD:
+        return "cd";
+    case DVD:
+        return "dvd";
+    }
+}

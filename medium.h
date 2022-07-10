@@ -19,6 +19,7 @@ public:
     explicit Medium(QObject *parent = nullptr);
     virtual QString details() = 0;
     virtual bool isAllowedToBeBorrowedBy(User *user);
+
     const QString &title() const;
     void setTitle(const QString &newTitle);
     const QString &description() const;
@@ -26,9 +27,10 @@ public:
     void setBorrower(User *newBorrower);
     User *borrower() const;
     bool available() const;
-
     MediumType type() const;
     void setType(MediumType newType);
+
+    static const QString mediumTypeString(MediumType type);
 
 signals:
     void medium_submitted();

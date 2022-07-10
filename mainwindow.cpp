@@ -160,29 +160,31 @@ void MainWindow::populateMediumTable() {
     for (Medium *m : *media) {
         int row = table->rowCount();
         table->insertRow(row);
-        table->setItem(row, 0, new QTableWidgetItem(m->title()));
-        table->setItem(row, 1, new QTableWidgetItem(m->description()));
+
+        table->setItem(row, 0, new QTableWidgetItem(Medium::mediumTypeString(m->type())));
+        table->setItem(row, 1, new QTableWidgetItem(m->title()));
+        table->setItem(row, 2, new QTableWidgetItem(m->description()));
 
         QTableWidgetItem *availabilityItem = new QTableWidgetItem(QVariant(m->available()).toString());
         availabilityItem->setFlags(availabilityItem->flags() ^ Qt::ItemIsEditable);
-        table->setItem(row, 2, availabilityItem);
+        table->setItem(row, 3, availabilityItem);
 
         QTableWidgetItem *borrowerItem = new QTableWidgetItem(m->borrower() != nullptr ? m->borrower()->fullName() : "-");
         borrowerItem->setFlags(borrowerItem->flags() ^ Qt::ItemIsEditable);
-        table->setItem(row, 3, borrowerItem);
+        table->setItem(row, 4, borrowerItem);
 
         QPushButton *borrowButton = new QPushButton(tr(m->available() ? "borrow" : "return"), this);
         connect(borrowButton, &QPushButton::released, this,
                 m->available() ? &MainWindow::borrowDialog : &MainWindow::returnMedium);
-        table->setCellWidget(row, 4, borrowButton);
+        table->setCellWidget(row, 5, borrowButton);
 
         QPushButton *removeButton = new QPushButton(tr("remove"), this);
         connect(removeButton, &QPushButton::released, this, &MainWindow::removeMedium);
-        table->setCellWidget(row, 5, removeButton);
+        table->setCellWidget(row, 6, removeButton);
 
         QPushButton *detailsButton = new QPushButton(tr("details"), this);
         connect(detailsButton, &QPushButton::released, this, &MainWindow::getMediumDetails);
-        table->setCellWidget(row, 6, detailsButton);
+        table->setCellWidget(row, 7, detailsButton);
     }
 }
 
@@ -351,6 +353,7 @@ void MainWindow::exportXml()
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     emit closing();
+    qDebug() << event;
 }
 
 void MainWindow::on_sortMediaButton_released()
@@ -400,6 +403,9 @@ void MainWindow::sortMedia() {
         break;
     default:
         break;
+    }
+    if (this->mediaDescending) {
+        std::reverse(this->media->begin(), this->media->begin());
     }
     emit medium_table_modified();
 }
