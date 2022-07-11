@@ -1,6 +1,5 @@
 #include "mediumchoicedialog.h"
 #include "ui_mediumchoicedialog.h"
-#include "addblueraydialog.h"
 #include "addcddialog.h"
 #include "addbookdialog.h"
 #include "adddvddialog.h"
